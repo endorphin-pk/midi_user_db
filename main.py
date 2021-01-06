@@ -1,15 +1,16 @@
 #pyinstaller --onefile main.py
 import firebase
-import secret
 import os
+from os.path import isfile
 
-version="1.1a"
+version="1.2"
 
-#print(f"{os.environ['temp']}\\secret.json")
-f=open(f"{os.environ['temp']}\\secret.json","w")
-f.write(secret.secret_json)
-f.close()
-firebase.setup(f"{os.environ['temp']}\\secret.json")
+if(isfile(f"{os.environ['localappdata']}\\secret.json")==False):
+    #print(f"os.environ['localappdata']}\\secret.json")
+    f=open(f"{os.environ['localappdata']}\\secret.json","w")
+    f.write(input("최초 실행 시에는 코드를 입력해야 해요.\n코드를 붙여넣어주세요.\n"))
+    f.close()
+firebase.setup(f"{os.environ['localappdata']}\\secret.json")
 if(firebase.read("최신버전")!=version):
     print("업데이트 안 하셨죠?")
     print("https://github.com/endorphin-pk/midi_user_db")
