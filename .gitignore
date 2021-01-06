@@ -1,0 +1,14 @@
+#가상환경
+venv/
+
+#에디터
+.idea/
+.vscode/
+
+#바이너리
+__pycache__/
+build/
+main.spec
+
+#시크릿
+secret.json
